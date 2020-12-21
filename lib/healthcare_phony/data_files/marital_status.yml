@@ -1,0 +1,49 @@
+---
+- :code: A
+  :description: Separated
+  :coding_system: HL70002
+- :code: B
+  :description: Unmarried
+  :coding_system: HL70002
+- :code: C
+  :description: Common Law
+  :coding_system: HL70002
+- :code: D
+  :description: Divorced
+  :coding_system: HL70002
+- :code: E
+  :description: Legally Separated
+  :coding_system: HL70002
+- :code: G
+  :description: Living Together
+  :coding_system: HL70002
+- :code: I
+  :description: Interlocutory
+  :coding_system: HL70002
+- :code: M
+  :description: Married
+  :coding_system: HL70002
+- :code: N
+  :description: Annulled
+  :coding_system: HL70002
+- :code: O
+  :description: Other
+  :coding_system: HL70002
+- :code: P
+  :description: Domestic Partner
+  :coding_system: HL70002
+- :code: R
+  :description: Registered Domestic Partner
+  :coding_system: HL70002
+- :code: S
+  :description: Single
+  :coding_system: HL70002
+- :code: T
+  :description: Unreported
+  :coding_system: HL70002
+- :code: U
+  :description: Unknown
+  :coding_system: HL70002
+- :code: W
+  :description: Widowed
+  :coding_system: HL70002

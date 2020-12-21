@@ -1,0 +1,250 @@
+---
+- :code: ABC
+  :description: 'Christian: American Baptist Church'
+  :coding_system: HL70006
+- :code: AGN
+  :description: Agnostic
+  :coding_system: HL70006
+- :code: AME
+  :description: 'Christian: African Methodist Episcopal Zion'
+  :coding_system: HL70006
+- :code: AMT
+  :description: 'Christian: African Methodist Episcopal'
+  :coding_system: HL70006
+- :code: ANG
+  :description: 'Christian: Anglican'
+  :coding_system: HL70006
+- :code: AOG
+  :description: 'Christian: Assembly of God'
+  :coding_system: HL70006
+- :code: ATH
+  :description: Atheist
+  :coding_system: HL70006
+- :code: BAH
+  :description: Bahai
+  :coding_system: HL70006
+- :code: BAP
+  :description: 'Christian: Baptist'
+  :coding_system: HL70006
+- :code: BMA
+  :description: 'Buddhist: Mahayana'
+  :coding_system: HL70006
+- :code: BOT
+  :description: 'Buddhist: Other'
+  :coding_system: HL70006
+- :code: BTA
+  :description: 'Buddhist: Tantrayana'
+  :coding_system: HL70006
+- :code: BTH
+  :description: 'Buddhist: Theravada'
+  :coding_system: HL70006
+- :code: BUD
+  :description: Buddhist
+  :coding_system: HL70006
+- :code: CAT
+  :description: 'Christian: Roman Catholic'
+  :coding_system: HL70006
+- :code: CFR
+  :description: Chinese Folk Religionist
+  :coding_system: HL70006
+- :code: CHR
+  :description: Christian
+  :coding_system: HL70006
+- :code: CHS
+  :description: 'Christian: Christian Science'
+  :coding_system: HL70006
+- :code: CMA
+  :description: 'Christian: Christian Missionary Alliance'
+  :coding_system: HL70006
+- :code: CNF
+  :description: Confucian
+  :coding_system: HL70006
+- :code: COC
+  :description: 'Christian: Church of Christ'
+  :coding_system: HL70006
+- :code: COG
+  :description: 'Christian: Church of God'
+  :coding_system: HL70006
+- :code: COI
+  :description: 'Christian: Church of God in Christ'
+  :coding_system: HL70006
+- :code: COL
+  :description: 'Christian: Congregational'
+  :coding_system: HL70006
+- :code: COM
+  :description: 'Christian: Community'
+  :coding_system: HL70006
+- :code: COP
+  :description: 'Christian: Other Pentecostal'
+  :coding_system: HL70006
+- :code: COT
+  :description: 'Christian: Other'
+  :coding_system: HL70006
+- :code: CRR
+  :description: 'Christian: Christian Reformed'
+  :coding_system: HL70006
+- :code: EOT
+  :description: 'Christian: Eastern Orthodox'
+  :coding_system: HL70006
+- :code: EPI
+  :description: 'Christian: Episcopalian'
+  :coding_system: HL70006
+- :code: ERL
+  :description: Ethnic Religionist
+  :coding_system: HL70006
+- :code: EVC
+  :description: 'Christian: Evangelical Church'
+  :coding_system: HL70006
+- :code: FRQ
+  :description: 'Christian: Friends'
+  :coding_system: HL70006
+- :code: FWB
+  :description: 'Christian: Free Will Baptist'
+  :coding_system: HL70006
+- :code: GRE
+  :description: 'Christian: Greek Orthodox'
+  :coding_system: HL70006
+- :code: HIN
+  :description: Hindu
+  :coding_system: HL70006
+- :code: HOT
+  :description: 'Hindu: Other'
+  :coding_system: HL70006
+- :code: HSH
+  :description: 'Hindu: Shaivites'
+  :coding_system: HL70006
+- :code: HVA
+  :description: 'Hindu: Vaishnavites'
+  :coding_system: HL70006
+- :code: JAI
+  :description: Jain
+  :coding_system: HL70006
+- :code: JCO
+  :description: 'Jewish: Conservative'
+  :coding_system: HL70006
+- :code: JEW
+  :description: Jewish
+  :coding_system: HL70006
+- :code: JOR
+  :description: 'Jewish: Orthodox'
+  :coding_system: HL70006
+- :code: JOT
+  :description: 'Jewish: Other'
+  :coding_system: HL70006
+- :code: JRC
+  :description: 'Jewish: Reconstructionist'
+  :coding_system: HL70006
+- :code: JRF
+  :description: 'Jewish: Reform'
+  :coding_system: HL70006
+- :code: JRN
+  :description: 'Jewish: Renewal'
+  :coding_system: HL70006
+- :code: JWN
+  :description: 'Christian: Jehovahs Witness'
+  :coding_system: HL70006
+- :code: LMS
+  :description: 'Christian: Lutheran Missouri Synod'
+  :coding_system: HL70006
+- :code: LUT
+  :description: 'Christian: Lutheran'
+  :coding_system: HL70006
+- :code: MEN
+  :description: 'Christian: Mennonite'
+  :coding_system: HL70006
+- :code: MET
+  :description: 'Christian: Methodist'
+  :coding_system: HL70006
+- :code: MOM
+  :description: 'Christian: Latter-day Saints'
+  :coding_system: HL70006
+- :code: MOS
+  :description: Muslim
+  :coding_system: HL70006
+- :code: MOT
+  :description: 'Muslim: Other'
+  :coding_system: HL70006
+- :code: MSH
+  :description: 'Muslim: Shiite'
+  :coding_system: HL70006
+- :code: MSU
+  :description: 'Muslim: Sunni'
+  :coding_system: HL70006
+- :code: NAM
+  :description: Native American
+  :coding_system: HL70006
+- :code: NAZ
+  :description: 'Christian: Church of the Nazarene'
+  :coding_system: HL70006
+- :code: NOE
+  :description: Nonreligious
+  :coding_system: HL70006
+- :code: NRL
+  :description: New Religionist
+  :coding_system: HL70006
+- :code: ORT
+  :description: 'Christian: Orthodox'
+  :coding_system: HL70006
+- :code: OTH
+  :description: Other
+  :coding_system: HL70006
+- :code: PEN
+  :description: 'Christian: Pentecostal'
+  :coding_system: HL70006
+- :code: PRC
+  :description: 'Christian: Other Protestant'
+  :coding_system: HL70006
+- :code: PRE
+  :description: 'Christian: Presbyterian'
+  :coding_system: HL70006
+- :code: PRO
+  :description: 'Christian: Protestant'
+  :coding_system: HL70006
+- :code: QUA
+  :description: 'Christian: Friends'
+  :coding_system: HL70006
+- :code: REC
+  :description: 'Christian: Reformed Church'
+  :coding_system: HL70006
+- :code: REO
+  :description: 'Christian: Reorganized Church of Jesus Christ-LDS'
+  :coding_system: HL70006
+- :code: SAA
+  :description: 'Christian: Salvation Army'
+  :coding_system: HL70006
+- :code: SEV
+  :description: 'Christian: Seventh Day Adventist'
+  :coding_system: HL70006
+- :code: SHN
+  :description: Shintoist
+  :coding_system: HL70006
+- :code: SIK
+  :description: Sikh
+  :coding_system: HL70006
+- :code: SOU
+  :description: 'Christian: Southern Baptist'
+  :coding_system: HL70006
+- :code: SPI
+  :description: Spiritist
+  :coding_system: HL70006
+- :code: UCC
+  :description: 'Christian: United Church of Christ'
+  :coding_system: HL70006
+- :code: UMD
+  :description: 'Christian: United Methodist'
+  :coding_system: HL70006
+- :code: UNI
+  :description: 'Christian: Unitarian'
+  :coding_system: HL70006
+- :code: UNU
+  :description: 'Christian: Unitarian Universalist'
+  :coding_system: HL70006
+- :code: VAR
+  :description: Unknown
+  :coding_system: HL70006
+- :code: WES
+  :description: 'Christian: Wesleyan'
+  :coding_system: HL70006
+- :code: WMC
+  :description: 'Christian: Wesleyan Methodist'
+  :coding_system: HL70006

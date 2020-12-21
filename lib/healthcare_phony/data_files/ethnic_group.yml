@@ -1,0 +1,10 @@
+---
+- :code: H
+  :description: 'Hispanic or Latino'
+  :coding_system: HL70189
+- :code: N
+  :description: 'Not Hispanic or Latino'
+  :coding_system: HL70189
+- :code: U
+  :description: Unknown
+  :coding_system: HL70189
