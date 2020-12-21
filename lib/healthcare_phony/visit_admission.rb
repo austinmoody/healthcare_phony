@@ -35,7 +35,7 @@ module HealthcarePhony
 
     def define_reason(**init_args)
       ar_choices = Helper.get_array(init_args[:admit_reason])
-      if ar_choices.positive?
+      if !ar_choices.nil?
         ar_choices.sample
       else
         Faker::Lorem.sentence
