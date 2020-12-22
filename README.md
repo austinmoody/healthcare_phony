@@ -1,8 +1,6 @@
 # HealthcarePhony
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/healthcare_phony`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is an admittedly _rough_ RubyGem used to generate fake data that can be used in creating test HL7, CSV, or other data for healthcare integration testing. 
 
 ## Installation
 
