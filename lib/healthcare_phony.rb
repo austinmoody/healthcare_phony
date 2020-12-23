@@ -27,6 +27,30 @@ module HealthcarePhony
       template.result_with_hash({ patient: patient, hl7: message, visit: visit })
     end
   end
+
+  class CsvFile
+    attr_reader :template_file, :number_of_rows
+
+    def initialize(number_of_rows, template_file = nil)
+      @template_file = if template_file.nil?
+                         File.join(File.dirname(__FILE__), 'healthcare_phony', 'templates', 'csv_example.erb')
+                       else
+                         template_file
+                       end
+      @number_of_rows = number_of_rows
+    end
+
+    def to_s
+      template = ERB.new(File.read(@template_file), trim_mode: '<>')
+      counter = 0
+      output_string = ''
+      while counter < @number_of_rows
+        output_string += template.result_with_hash({ patient: Patient.new, write_header: counter == 0 }) + "\n"
+        counter += 1
+      end
+      output_string
+    end
+  end
 end
 
 class String

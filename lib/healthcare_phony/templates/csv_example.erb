@@ -1,0 +1,4 @@
+<% if write_header %>
+MRN,FIRST_NAME,LAST_NAME
+<% end %>
+"<%= patient.medical_record_number.identifier %>","<%= patient.names[0].given_name %>","<%= patient.names[0].family_name %>"
