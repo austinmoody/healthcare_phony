@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 module HealthcarePhony
+  # Public: Generates a fake Doctor
   class Doctor
-    attr_accessor :identifier,
-                  :name
+    # Public: Gets/Sets the String identifier of the doctor.
+    attr_accessor :identifier
+    # Public: Gets/Sets the PersonName name of the doctor.
+    attr_accessor :name
 
+    # Public: Initialize a Doctor.  Pass in hash of different parameters, currently this includes:
+    #
+    # identifier - Allows you to specify an identifier for this Doctor instead of having it randomly generated.
     def initialize(**init_args)
       @identifier = if !init_args[:identifier].nil?
                       init_args[:identifier]
