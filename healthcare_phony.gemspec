@@ -44,5 +44,6 @@ Gem::Specification.new do |spec|
   spec.required_rubygems_version = '>= 2.6.10'
 
   spec.add_dependency 'faker', '~> 2.13.0'
+  spec.add_dependency 'psych', '~> 3.1.0'
   spec.add_dependency 'regexp-examples', '~> 1.5.1'
 end

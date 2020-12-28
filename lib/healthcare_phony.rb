@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-require 'faker'
 require 'erb'
+require 'faker'
+require 'psych'
+require 'regexp-examples'
 
 Dir[File.join(__dir__, 'healthcare_phony', '*.rb')].sort.each { |file| require file }
 

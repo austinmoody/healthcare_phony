@@ -35,7 +35,7 @@ module HealthcarePhony
       end
 
       def get_yaml_contents(file_path)
-        YAML.safe_load(File.read(file_path), [Symbol])
+        Psych.load_file(file_path)
       end
 
       def get_npi_check_digit(npi)

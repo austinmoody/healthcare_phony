@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module HealthcarePhony
+  # Public: Randomly generate a Patient
   class Patient
     attr_accessor :names,
                   :medical_record_number,
