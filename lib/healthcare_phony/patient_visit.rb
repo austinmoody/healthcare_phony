@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module HealthcarePhony
+  # Public: Randomly generates data for a PatientVisit (PV1 segment)
   class PatientVisit
     attr_accessor :patient_class,
                   :admission, :doctors,
@@ -9,6 +10,19 @@ module HealthcarePhony
                   :visit_number, :bed_status,
                   :discharge, :location
 
+    # Public: Initializes an Address. Pass in hash of different parameters, currently this includes:
+    # hospital_service - Array of Hospital Service codes (PV1.10) to randomly choose from.  Specified as comma separated
+    # String or Ruby array. Otherwise default HL7 v2.5.1 Table 0069 values are used.
+    # patient_class - Array of Patient Class codes (PV1.2) to randomly choose from.  Specified as comma separated
+    # String or Ruby array. Otherwise default HL7 v2.5.1 Table 0004 values are used.
+    # ambulatory_status - Array of Ambulatory Status codes (PV1.15) to randomly choose from. Specified as comma
+    # separated String or Ruby array. Otherwise default HL7 v2.5.1 Table 0009 values are used.
+    # bed_status - Array of Bed Status codes (PV1.40) to randomly choose from. Specified as comma separated String or
+    # Ruby array.  Otherwise default HL7 v2.5.1 Table 0116 values are used.
+    # patient_type - Array of Patient Type codes (PV1.18) to randomly choose from. Specified as comma separated String
+    # or Ruby array. Otherwise this field is left blank.
+    # vip_indicator - Array of Patient Type codes (PV1.18) to randomly choose from. Specified as comma separated String
+    # or Ruby array. Otherwise this field is left blank.
     def initialize(**init_args)
       @doctors = VisitDoctors.new
       @location = VisitLocation.new(init_args)

@@ -16,6 +16,8 @@ module HealthcarePhony
       # blank - An integer representing the % of times phone number components should be blank.
       # use_code_data_file - YAML file containing use codes to randomly choose from.  If not specified then values from
       # {tele_use_code.yml}[https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/tele_use_code.yml] are used.
+      # equipment_type_data_file - YAML file containing equipment type codes to randomly choose from.  If not specified
+      # then values {tele_equipment_type}[https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/tele_equipment_type.yml] will be used.
       @set_blank = !init_args[:blank].nil? && Helper.random_with_blank('X', init_args[:blank]) == ''
       @use_code_data_file = init_args[:use_code_data_file]
       @equipment_type_data_file = init_args[:equipment_type_data_file]
