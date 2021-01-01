@@ -24,7 +24,7 @@ module HealthcarePhony
       @middle_name = define_middle_name
       @suffix = define_suffix
       @prefix = define_prefix
-      @degree = define_degree
+      @degree = define_degree(init_args)
     end
 
     private
@@ -85,9 +85,12 @@ module HealthcarePhony
       end
     end
 
-    def define_degree
+    def define_degree(**init_args)
       if @set_blank
         ''
+      elsif !init_args[:degree].nil?
+        degree_choices = Helper.get_array(init_args[:degree])
+        degree_choices.sample unless degree_choices.empty?
       else
         degrees_from_file
       end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module HealthcarePhony
+  # Public: Generates various location information associated with a visit.
   class VisitLocation
     attr_accessor :point_of_care,
                   :room,
@@ -12,6 +13,25 @@ module HealthcarePhony
                   :floor,
                   :description
 
+    # Public: Initializes an Address. Pass in hash of different parameters, currently this includes:
+    # point_of_care - Array of potential points of care (PV1.3.1) to randomly choose from. Specified as comma separated
+    # String or Ruby array. Otherwise random example generated.
+    # room - Array of potential rooms (PV1.3.2) to randomly choose from. Specified as comma separated String or Ruby
+    # array.  Otherwise a random 3 digit number is generated.
+    # bed - Array of potential beds (PV1.3.3) to randomly choose from. Specified as comma separated String or Ruby
+    # array. Otherwise a 3 character sequence is created.
+    # facility - Array of potential facility names (PV1.3.4) to randomly choose from. Specified as comma separated
+    # String or Ruby array. Otherwise a random string is generated.
+    # location_status - Array of potential location statuses (PV1.3.5) to randomly choose from. Specified as comma
+    # separated String or Ruby array. Otherwise a random uppercase letter is generated to use.
+    # person_location_type - Array of potential person location types (PV1.3.6) to randomly choose from.  Specified as
+    # comma separated String or Ruby array. Otherwise values from HL7 v2.5.1 Table 0305 will be used.
+    # building - Array of potential building information (PV1.3.7) to randomly choose from. Specified as a comma
+    # separated String or Ruby array. Otherwise a random digit 1-9 is used.
+    # floor - Array of potential floor information (PV1.3.8) to randomly choose from.  Specified as a comma separated
+    # String or Ruby array. Otherwise a random 2 digit number is used.
+    # location_description - Array of potential location descriptions (PV1.3.9) to randomly choose from.  Specified as
+    # a comma separated String or Ruby array. Otherwise a random string is generated.
     def initialize(**init_args)
       @point_of_care = define_point_of_care(init_args)
       @room = define_room(init_args)
@@ -51,7 +71,7 @@ module HealthcarePhony
 
     def define_facility(**init_args)
       fac_choices = Helper.get_array(init_args[:facility])
-      !fac_choices.empty? ? fac_choices.sample : Faker::Company.name
+      !fac_choices.empty? ? fac_choices.sample : Faker::Lorem.sentence
     end
 
     def define_status(**init_args)
@@ -79,7 +99,7 @@ module HealthcarePhony
       if !ld_choices.empty?
         ld_choices.sample
       else
-        Faker::Company.name
+        Faker::Lorem.sentence
       end
     end
   end

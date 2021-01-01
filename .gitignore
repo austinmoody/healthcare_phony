@@ -1,23 +1,16 @@
-/.bundle/
 /.yardoc
-/_yardoc/
 /coverage/
 /bin/
-/doc/
 /pkg/
 /spec/reports/
 /tmp/
 *.gem
 *.rbc
 /.config
-/coverage/
 /InstalledFiles
-/pkg/
-/spec/reports/
 /spec/examples.txt
 /test/tmp/
 /test/version_tmp/
-/tmp/
 /.idea
 /bin
 
@@ -66,3 +59,6 @@ Gemfile.lock
 # Used by RuboCop. Remote config files pulled in from inherit_from directive.
 # .rubocop-https?--*
 .DS_Store
+
+# My debugger script
+/austin_debugger.rb

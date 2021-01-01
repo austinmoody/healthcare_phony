@@ -48,4 +48,16 @@ class PersonNameTest < Minitest::Test
     pn = HealthcarePhony::PersonName.new(degree_data_file: @different_degree_file)
     assert_includes(@different_degree, pn.degree)
   end
+
+  def test_degree_string
+    degrees = 'A,B,C'
+    pn = HealthcarePhony::PersonName.new(degree: degrees)
+    assert_includes(degrees.split(','), pn.degree)
+  end
+
+  def test_degree_array
+    degrees = %w[A B C]
+    pn = HealthcarePhony::PersonName.new(degree: degrees)
+    assert_includes(degrees, pn.degree)
+  end
 end

@@ -11,75 +11,61 @@ module HealthcarePhony
       def get_array(input_argument)
         return_array = []
 
-        if !input_argument.nil? && input_argument.class == Array
+        if !input_argument.nil? && input_argument.instance_of?(Array)
           return_array = input_argument
-        elsif !input_argument.nil? && input_argument.class == String
+        elsif !input_argument.nil? && input_argument.instance_of?(String)
           return_array = input_argument.split(',')
         end
 
         return_array
       end
 
-      def double_alternate_digits(npi)
-        # Double the value of alternate digits, beginning with the rightmost digit... then add them together
-        b_npi = []
-        npi.to_s.split('').reverse.each_with_index do |n, i|
-          b_npi.push((n.to_i * 2).to_s) if (i + 1).odd?
+      def npi_step_one(input)
+        # Step 1: Double the value of alternate digits, beginning with the rightmost digit.
+        npi = []
+        input.to_s.split('').reverse.each_with_index do |n, i|
+          npi.push((n.to_i * 2).to_s) if (i + 1).odd?
         end
-        b_npi.reverse!
-        b_total = 0
-        b_npi.join('').split('').each do |x|
-          b_total += x.to_i
+        npi.reverse!
+        total = 0
+        npi.join('').split('').each do |x|
+          total += x.to_i
         end
-        b_total
+        total
       end
 
-      def get_yaml_contents(file_path)
-        Psych.load_file(file_path)
+      def npi_step_two(input, step_one_total)
+        # Step 2:  Add constant 24, to account for the 80840 prefix that would be present on a card issuer identifier,
+        # plus the individual digits of products of doubling, plus unaffected digits.
+        (24 + step_one_total + double_alternate_digits(input))
+      end
+
+      def next_number_end_with_zero(input)
+        input += 1 while input.to_s[-1] != '0'
+        input
+      end
+
+      def double_alternate_digits(npi)
+        a_total = 0
+        counter = 1
+        npi.to_s.split('').each do |n|
+          a_total += n.to_i if counter.even?
+          counter += 1
+        end
+        a_total
       end
 
       def get_npi_check_digit(npi)
-        a_npi = npi.to_s.split('')
-
-        # Double the value of alternate digits, beginning with the rightmost digit... then add them together
-        b_npi = []
-        counter = 1
-        a_npi.reverse.each do |n|
-          if counter.odd?
-            b_npi.push((n.to_i * 2).to_s)
-          end
-          counter += 1
-        end
-
-        b_npi.reverse!
-
-        b_total = 0
-        b_npi.join("").split("").each do |x|
-          b_total += x.to_i
-        end
-
-        # Add up unaffected digits from above step
-        a_total = 0
-        counter = 1
-        a_npi.each do |n|
-          if counter.even?
-            a_total += n.to_i
-          end
-          counter += 1
-        end
+        step_one = npi_step_one(npi)
 
         # Add totals from above two steps + 24
-        c_total = 24 + a_total + b_total
+        # c_total = 24 + a_total + b_total
+        step_two = npi_step_two(npi, step_one)
 
-        # Get next highest # that ends w/ 0 from above total
-        n_total = c_total
-        while (n_total.to_s[-1] != "0")
-          n_total += 1
-        end
-        next_high = n_total
+        next_high = next_number_end_with_zero(step_two)
 
-        return (next_high - c_total)
-
+        # Step 3:  Subtract from next higher number ending in zero.
+        (next_high - step_two)
       end
     end
   end
