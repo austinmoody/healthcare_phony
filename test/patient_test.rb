@@ -74,4 +74,25 @@ class PatientTest < Minitest::Test
     assert_equal('MR', @p_default.medical_record_number.identifier_type_code)
     assert_equal('AN', @p_default.account_number.identifier_type_code)
   end
+
+  def test_names_count_zero
+    p = HealthcarePhony::Patient.new(names_count: 0)
+    assert_equal(1, p.names.length)
+    p = HealthcarePhony::Patient.new(names_count: -2)
+    assert_equal(1, p.names.length)
+  end
+
+  def test_address_count_zero
+    p = HealthcarePhony::Patient.new(address_count: 0)
+    assert_equal(1, p.addresses.length)
+    p = HealthcarePhony::Patient.new(address_count: -2)
+    assert_equal(1, p.addresses.length)
+  end
+
+  def test_race_count_zero
+    p = HealthcarePhony::Patient.new(race_count: 0)
+    assert_equal(1, p.races.length)
+    p = HealthcarePhony::Patient.new(race_count: -2)
+    assert_equal(1, p.races.length)
+  end
 end

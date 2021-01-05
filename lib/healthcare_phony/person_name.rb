@@ -11,7 +11,7 @@ module HealthcarePhony
                   :degree
 
     # Public: Initializes an Address. Pass in hash of different parameters, currently this includes:
-    # blank - An integer representing the % of times Address components should be blank.
+    # blank - An integer representing the % of times PatientName components should be blank.
     # gender - A Gender object which will be used to generate a Male or Female name if specified.
     # degree_data_file - Location of YAML file containing a list of potential degrees to choose from. By default the
     # gem supplied file will be used.  The default file {degree.yml}[https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/degree.yml].

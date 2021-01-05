@@ -26,11 +26,11 @@ module HealthcarePhony
                   :death_datetime
 
     def initialize(**init_args)
+      define_gender(init_args)
       define_names(init_args)
       define_addresses(init_args)
       define_phones(init_args)
       define_dob(init_args)
-      @gender = Gender.new(init_args)
       define_race(init_args)
       define_other
       define_identifiers
@@ -40,17 +40,26 @@ module HealthcarePhony
 
     private
 
+    def define_gender(**init_args)
+      @gender = if !init_args[:gender].nil? && init_args[:gender].is_a?(HealthcarePhony::Gender)
+                  init_args[:gender]
+                else
+                  HealthcarePhony::Gender.new(init_args)
+                end
+    end
+
     def define_names(**init_args)
-      names_count = init_args[:names_count].nil? ? 1 : init_args[:names_count]
+      init_args[:gender] = @gender
+      names_count = init_args[:names_count].nil? || init_args[:names_count] < 1 ? 1 : init_args[:names_count]
       @names = []
       while names_count.positive?
-        @names.push(PersonName.new)
+        @names.push(PersonName.new(init_args))
         names_count -= 1
       end
     end
 
     def define_addresses(**init_args)
-      address_count = init_args[:address_count].nil? ? 1 : init_args[:address_count]
+      address_count = init_args[:address_count].nil? || init_args[:address_count] < 1 ? 1 : init_args[:address_count]
       @addresses = []
       while address_count.positive?
         @addresses.push(Address.new)
@@ -71,7 +80,7 @@ module HealthcarePhony
     end
 
     def define_race(**init_args)
-      races_count = init_args[:race_count].nil? ? 1 : init_args[:race_count]
+      races_count = init_args[:race_count].nil? || init_args[:race_count] < 1 ? 1 : init_args[:race_count]
       @races = []
       while races_count.positive?
         @races.push(Race.new)
