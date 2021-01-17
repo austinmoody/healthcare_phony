@@ -272,6 +272,43 @@ The creation of the PatientVisit can be customized by sending the following para
 * discharge_location &rarr; Array of discharge locations to randomly choose from.  Specified as comma separated String or Ruby array. Otherwise a string of data is generated with Faker::Lorem.sentence
 * admit_datetime &rarr; The admit date/time associated with this visit.  If not specified the current date/time is used.
 
+### Hl7 Message
+
+```ruby
+hl7 = HealthcarePhony::Hl7Message.new
+```
+
+The above will give you a default Hl7Message object:
+
+```
+#<HealthcarePhony::Hl7Message:0x00007f81979beb58
+ @message_type="MDM",
+ @trigger_event="T04",
+ @message_control_id="PHONY8408942134",
+ @version="2.5.1", @sending_facility="",
+ @sending_application="",
+ @receiving_application="",
+ @receiving_facility="",
+ @message_datetime=2021-01-16 20:29:10 -0500,
+ @processing_id="P">
+```
+
+The creation of the Hl7Message object can be customized by sending the following parameters when initializing:
+
+* message_version - HL7v2 version (MSH.12)
+* message_processing_id - Typically P or T (MSH.11)
+* message_types - Array of Message Types (MSH.9.1) to randomly choose from.  Specified as comma separated String or Ruby array.
+* message_type_file - Location of file containing Message Types (MSH.9.1). If not specified then included [hl7_message_types.yml](https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/hl7_message_types.yml) file will be used.
+* message_events - Generic array of Trigger Events (MSH.9.2) to randomly choose from.  Specified as command separated String or Ruby array.
+* adt_events - Array of ADT Trigger Events (MSH.9.2) to randomly choose from. Used (if specified) if the Message type for the message is ADT. ADT events from [adt_event_types.yml](https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/adt_event_types.yml) will be used by default.
+* oru_events - Array of ORU Trigger Events (MSH.9.2) to randomly choose from. Used (if specified) if the Message type for the message is ORU. ORU events from [oru_event_types.yml](https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/adt_event_types.yml) will be used by default.
+* mdm_events - Array of MDM Trigger Events (MSH.9.2) to randomly choose from. Used (if specified) if the Message type for the message is MDM. MDM events from [mdm_event_types.yml](https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/adt_event_types.yml) will be used by default.
+* message_control_id_pattern - Regex pattern used to randomly generate MSH.10 values.  Default is PHONY\d{10} which will generate a value like: PHONY6850295805
+* message_sending_facility - Array of Sending Facilities (MSH.4) to randomly choose from.  Specified as comma separated String or Ruby Array.
+* message_sending_application - Array of Sending Applications (MSH.3) to randomly choose from.  Specified as comma separated String or Ruby Array.
+* message_receiving_application - Array of Receiving Applications (MSH.5) to randomly choose from.  Specified as comma separated String or Ruby Array.
+* message_receiving_facility - Array of Receiving Facilities (MSH.6) to randomly choose from.  Specified as comma separated String or Ruby Array.
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/austinmoody/healthcare_phony. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/healthcare_phony/blob/master/CODE_OF_CONDUCT.md).

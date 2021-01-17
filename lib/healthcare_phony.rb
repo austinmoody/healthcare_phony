@@ -11,21 +11,23 @@ Faker::Config.locale = 'en-US'
 
 module HealthcarePhony
   class Adt
-    attr_reader :template_file
+    attr_reader :template_file, :adt_arguments
 
-    def initialize(template_file = nil)
-      @template_file = if template_file.nil?
+    def initialize(**init_args)
+      @adt_arguments = init_args
+      @adt_arguments[:message_types] = 'ADT'
+      @template_file = if adt_arguments[:template_file].nil?
                          File.join(File.dirname(__FILE__), 'healthcare_phony', 'templates', 'adt_example.erb')
                        else
-                         template_file
+                         adt_arguments[:template_file]
                        end
     end
 
     def to_s
       template = ERB.new(File.read(@template_file))
-      message = Hl7Message.new
-      patient = Patient.new
-      visit = PatientVisit.new
+      message = Hl7Message.new(@adt_arguments)
+      patient = Patient.new(@adt_arguments)
+      visit = PatientVisit.new(@adt_arguments)
       template.result_with_hash({ patient: patient, hl7: message, visit: visit })
     end
   end
