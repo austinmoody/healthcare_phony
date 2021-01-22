@@ -11,20 +11,24 @@ Faker::Config.locale = 'en-US'
 
 module HealthcarePhony
   class Adt
-    attr_reader :template_file, :adt_arguments
+    attr_reader :template, :adt_arguments
 
     def initialize(**init_args)
       @adt_arguments = init_args
       @adt_arguments[:message_types] = 'ADT'
-      @template_file = if adt_arguments[:template_file].nil?
-                         File.join(File.dirname(__FILE__), 'healthcare_phony', 'templates', 'adt_example.erb')
-                       else
-                         adt_arguments[:template_file]
-                       end
+      unless adt_arguments[:template].nil?
+        @template = adt_arguments[:template]
+        return
+      end
+      @template = if adt_arguments[:template_file].nil?
+                    File.read(File.join(File.dirname(__FILE__), 'healthcare_phony', 'templates', 'adt_example.erb'))
+                  else
+                    File.read(adt_arguments[:template_file])
+                  end
     end
 
     def to_s
-      template = ERB.new(File.read(@template_file))
+      template = ERB.new(@template)
       message = Hl7Message.new(@adt_arguments)
       patient = Patient.new(@adt_arguments)
       visit = PatientVisit.new(@adt_arguments)
@@ -49,7 +53,7 @@ module HealthcarePhony
       counter = 0
       output_string = ''
       while counter < @number_of_rows
-        output_string += template.result_with_hash({ patient: Patient.new, write_header: counter == 0 }) + "\n"
+        output_string += "#{template.result_with_hash({ patient: Patient.new, write_header: counter.zero? })}\n"
         counter += 1
       end
       output_string
