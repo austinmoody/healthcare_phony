@@ -11,28 +11,34 @@ Faker::Config.locale = 'en-US'
 
 module HealthcarePhony
   class Adt
-    attr_reader :template, :adt_arguments
+    attr_reader :template, :adt_arguments, :hl7_message, :patient, :visit
 
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @adt_arguments = init_args
       @adt_arguments[:message_types] = 'ADT'
-      unless adt_arguments[:template].nil?
-        @template = adt_arguments[:template]
-        return
-      end
-      @template = if adt_arguments[:template_file].nil?
-                    File.read(File.join(File.dirname(__FILE__), 'healthcare_phony', 'templates', 'adt_example.erb'))
-                  else
-                    File.read(adt_arguments[:template_file])
-                  end
+      set_template
+      @hl7_message = Hl7Message.new(@adt_arguments)
+      @patient = Patient.new(@adt_arguments)
+      @visit = PatientVisit.new(@adt_arguments)
     end
 
     def to_s
-      template = ERB.new(@template)
-      message = Hl7Message.new(@adt_arguments)
-      patient = Patient.new(@adt_arguments)
-      visit = PatientVisit.new(@adt_arguments)
-      template.result_with_hash({ patient: patient, hl7: message, visit: visit })
+      erb_template = ERB.new(@template)
+      erb_template.result_with_hash({ patient: @patient, hl7: @hl7_message, visit: @visit })
+    end
+
+    private
+
+    def set_template
+      unless @adt_arguments[:template].nil?
+        @template = @adt_arguments[:template]
+        return
+      end
+      @template = if @adt_arguments[:template_file].nil?
+                    File.read(File.join(File.dirname(__FILE__), 'healthcare_phony', 'templates', 'adt_example.erb'))
+                  else
+                    File.read(@adt_arguments[:template_file])
+                  end
     end
   end
 

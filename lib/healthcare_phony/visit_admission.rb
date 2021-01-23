@@ -12,7 +12,7 @@ module HealthcarePhony
     # Ruby array. Otherwise default HL7 v2.5.1. Table 0007 values are used.
     # admit_reason - Array of values to use as Admit Reason (PV2.3) to randomly choose from.  Specified as comma
     # separated String or Ruby array.  Otherwise a string of data is generated with Faker::Lorem.sentence
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @source = define_source(init_args)
       @type = define_type(init_args)
       @datetime = Faker::Time.backward(days: Faker::Number.number(digits: 1))
@@ -21,7 +21,7 @@ module HealthcarePhony
 
     private
 
-    def define_source(**init_args)
+    def define_source(init_args = {})
       standard_admit_source = '123456789'.split('')
       as_choices = Helper.get_array(init_args[:admit_source])
       if !as_choices.empty?
@@ -31,7 +31,7 @@ module HealthcarePhony
       end
     end
 
-    def define_type(**init_args)
+    def define_type(init_args = {})
       standard_admission_types = %w[A C E L N R U]
       at_choices = Helper.get_array(init_args[:admission_type])
       if !at_choices.empty?
@@ -41,7 +41,7 @@ module HealthcarePhony
       end
     end
 
-    def define_reason(**init_args)
+    def define_reason(init_args = {})
       ar_choices = Helper.get_array(init_args[:admit_reason])
       if !ar_choices.empty?
         ar_choices.sample

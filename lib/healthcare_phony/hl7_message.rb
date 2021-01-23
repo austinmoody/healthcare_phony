@@ -42,7 +42,7 @@ module HealthcarePhony
     # separated String or Ruby Array.
     # message_receiving_facility - Array of Receiving Facilities (MSH.6) to randomly choose from.  Specified as comma separated
     # String or Ruby Array.
-    def initialize(**init_args)
+    def initialize(init_args)
       define_message_type(init_args)
       define_trigger_event(init_args)
       define_control_id(init_args)
@@ -60,7 +60,7 @@ module HealthcarePhony
 
     private
 
-    def define_message_type(**init_args)
+    def define_message_type(init_args = {})
       file_name = "#{::File.expand_path(::File.join("..", "data_files"), __FILE__)}/hl7_message_types.yml"
       file_name = init_args[:message_type_file] unless init_args[:message_type_file].nil?
       hl7_message_types = if !init_args[:message_types].nil?
@@ -71,7 +71,7 @@ module HealthcarePhony
       @message_type = hl7_message_types.nil? ? '' : hl7_message_types.sample
     end
 
-    def define_trigger_event(**init_args)
+    def define_trigger_event(init_args = {})
       @trigger_event = Helper.get_array(init_args[:message_events]).sample
       return unless @trigger_event.nil?
 
@@ -85,22 +85,22 @@ module HealthcarePhony
       end
     end
 
-    def define_adt_trigger_event(**init_args)
+    def define_adt_trigger_event(init_args = {})
       event_types = get_adt_events(init_args)
       event_types&.sample
     end
 
-    def define_oru_trigger_event(**init_args)
+    def define_oru_trigger_event(init_args = {})
       event_types = get_oru_events(init_args)
       event_types&.sample
     end
 
-    def define_mdm_trigger_event(**init_args)
+    def define_mdm_trigger_event(init_args = {})
       event_types = get_mdm_events(init_args)
       event_types&.sample
     end
 
-    def get_adt_events(**init_args)
+    def get_adt_events(init_args = {})
       file_name = "#{::File.expand_path(::File.join("..", "data_files"), __FILE__)}/adt_event_types.yml"
       if init_args[:adt_events].nil?
         Psych.load_file(file_name)
@@ -109,7 +109,7 @@ module HealthcarePhony
       end
     end
 
-    def get_oru_events(**init_args)
+    def get_oru_events(init_args = {})
       file_name = "#{::File.expand_path(::File.join("..", "data_files"), __FILE__)}/oru_event_types.yml"
       if init_args[:oru_events].nil?
         Psych.load_file(file_name)
@@ -118,7 +118,7 @@ module HealthcarePhony
       end
     end
 
-    def get_mdm_events(**init_args)
+    def get_mdm_events(init_args = {})
       file_name = "#{::File.expand_path(::File.join("..", "data_files"), __FILE__)}/mdm_event_types.yml"
       if init_args[:mdm_events].nil?
         Psych.load_file(file_name)
@@ -127,7 +127,7 @@ module HealthcarePhony
       end
     end
 
-    def define_control_id(**init_args)
+    def define_control_id(init_args = {})
       control_id_pattern = if init_args[:message_control_id_pattern].nil?
                              'PHONY\d{10}'
                            else
@@ -136,22 +136,22 @@ module HealthcarePhony
       @message_control_id = Regexp.new(control_id_pattern).random_example
     end
 
-    def define_sending_facility(**init_args)
+    def define_sending_facility(init_args = {})
       sf_choices = Helper.get_array(init_args[:message_sending_facility])
       @sending_facility = !sf_choices.empty? ? sf_choices.sample : ''
     end
 
-    def define_sending_application(**init_args)
+    def define_sending_application(init_args = {})
       sa_choices = Helper.get_array(init_args[:message_sending_application])
       @sending_application = !sa_choices.empty? ? sa_choices.sample : ''
     end
 
-    def define_receiving_application(**init_args)
+    def define_receiving_application(init_args = {})
       ra_choices = Helper.get_array(init_args[:message_receiving_application])
       @receiving_application = !ra_choices.empty? ? ra_choices.sample : ''
     end
 
-    def define_receiving_facility(**init_args)
+    def define_receiving_facility(init_args = {})
       rf_choices = Helper.get_array(init_args[:message_receiving_facility])
       @receiving_facility = !rf_choices.empty? ? rf_choices.sample : ''
     end

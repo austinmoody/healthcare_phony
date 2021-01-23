@@ -12,7 +12,7 @@ module HealthcarePhony
     # ethnic_group_data_file - YAML file containing ethnic group information to randomly choose from if different options than
     # those that come with gem are desired.  See {ethnic_group.yml}[https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/ethnic_group.yml]
     # for default values.
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @set_blank = !init_args[:blank].nil? && Helper.random_with_blank('X', init_args[:blank]) == ''
       data_file = if !init_args[:ethnic_group_data_file].nil?
                     init_args[:ethnic_group_data_file]

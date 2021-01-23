@@ -23,7 +23,7 @@ module HealthcarePhony
     # or Ruby array. Otherwise this field is left blank.
     # vip_indicator - Array of Patient Type codes (PV1.18) to randomly choose from. Specified as comma separated String
     # or Ruby array. Otherwise this field is left blank.
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @doctors = VisitDoctors.new
       @location = VisitLocation.new(init_args)
       @admission = VisitAdmission.new(init_args)
@@ -40,7 +40,7 @@ module HealthcarePhony
 
     private
 
-    def define_hospital_service(**init_args)
+    def define_hospital_service(init_args = {})
       standard_hospital_service = %w[CAR MED PUL SUR URO]
       hs_choices = Helper.get_array(init_args[:hospital_service])
       if !hs_choices.empty?
@@ -50,13 +50,13 @@ module HealthcarePhony
       end
     end
 
-    def define_patient_class(**init_args)
+    def define_patient_class(init_args = {})
       standard_pc_choices = %w[B C E I N O P R U]
       pc_choices = Helper.get_array(init_args[:patient_class])
       !pc_choices.empty? ? pc_choices.sample : standard_pc_choices.sample
     end
 
-    def define_ambulatory_status(**init_args)
+    def define_ambulatory_status(init_args = {})
       standard_ambulatory_status = %w[A0 A1 A2 A3 A4 A5 A6 A7 A8 A9 B1 B2 B3 B4 B5 B6]
       as_choices = Helper.get_array(init_args[:ambulatory_status])
       if !as_choices.empty?
@@ -66,7 +66,7 @@ module HealthcarePhony
       end
     end
 
-    def define_bed_status(**init_args)
+    def define_bed_status(init_args = {})
       bs_choices = Helper.get_array(init_args[:bed_status])
       if !bs_choices.empty?
         bs_choices.sample
@@ -75,7 +75,7 @@ module HealthcarePhony
       end
     end
 
-    def define_patient_type(**init_args)
+    def define_patient_type(init_args = {})
       pt_choices = Helper.get_array(init_args[:patient_type])
       if !pt_choices.empty?
         pt_choices.sample
@@ -84,7 +84,7 @@ module HealthcarePhony
       end
     end
 
-    def define_vip(**init_args)
+    def define_vip(init_args = {})
       vip_choices = Helper.get_array(init_args[:vip_indicator])
       if !vip_choices.empty?
         vip_choices.sample

@@ -8,7 +8,7 @@ module HealthcarePhony
 
     # Public: Initializes a Gender. Pass in hash of different parameters, currently this includes:
     # blank - An integer representing the % of times Address components should be blank.
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @description = %w[Female Male Unknown].sample
 
       @description = if !init_args[:blank].nil?

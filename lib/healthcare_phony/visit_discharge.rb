@@ -14,7 +14,7 @@ module HealthcarePhony
     # discharge_location - Array of discharge locations to randomly choose from.  Specified as comma separated String or
     # Ruby array. Otherwise a string of data is generated with Faker::Lorem.sentence
     # admit_datetime - The admit date/time associated with this visit.  If not specified the current date/time is used.
-    def initialize(**init_args)
+    def initialize(init_args = {})
       if init_args[:event_type] == 'A03'
         @disposition = define_discharge_disposition(init_args)
         @location = define_discharge_location(init_args)
@@ -28,7 +28,7 @@ module HealthcarePhony
 
     private
 
-    def define_discharge_disposition(**init_args)
+    def define_discharge_disposition(init_args = {})
       dd_choices = Helper.get_array(init_args[:discharge_disposition])
       if init_args[:event_type] != 'A03'
         ''
@@ -41,7 +41,7 @@ module HealthcarePhony
       end
     end
 
-    def define_discharge_location(**init_args)
+    def define_discharge_location(init_args = {})
       dl_choices = Helper.get_array(init_args[:discharge_location])
       if !dl_choices.empty?
         dl_choices.sample
@@ -50,7 +50,7 @@ module HealthcarePhony
       end
     end
 
-    def define_discharge_datetime(**init_args)
+    def define_discharge_datetime(init_args = {})
       from_datetime = if init_args[:admit_datetime].nil?
                         Time.now
                       else

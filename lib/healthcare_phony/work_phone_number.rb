@@ -9,7 +9,7 @@ module HealthcarePhony
     # blank - An integer representing the % of times phone number components should be blank.
     # use_code - Allows specification of the phone use code (PID.13.2)
     # equipment_type - Allows specification of the phone equipment type (PID.13.3)
-    def initialize(**init_args)
+    def initialize(init_args = {})
       super(init_args)
       @use_code = init_args[:use_code].nil? ? 'WPN' : init_args[:use_code]
       @use_code = '' unless @set_blank == false

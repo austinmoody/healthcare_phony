@@ -7,7 +7,7 @@ module HealthcarePhony
                   :use_code,
                   :equipment_type
 
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @set_blank = !init_args[:blank].nil? && Helper.random_with_blank('X', init_args[:blank]) == ''
       @email_address = Faker::Internet.email
       @email_address = '' unless @set_blank == false

@@ -11,7 +11,7 @@ module HealthcarePhony
                   :use_code,
                   :equipment_type
 
-    def initialize(**init_args)
+    def initialize(init_args = {})
       # Public: Initializes a home phone number. Pass in hash of different parameters, currently this includes:
       # blank - An integer representing the % of times phone number components should be blank.
       # use_code_data_file - YAML file containing use codes to randomly choose from.  If not specified then values from

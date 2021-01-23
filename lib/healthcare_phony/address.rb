@@ -13,7 +13,7 @@ module HealthcarePhony
     # address_type_data_file - YAML file containing address types to randomly choose from if different options than
     # those that come with gem are desired.
     # See {address_type.yml}[https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/address_type.yml]
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @set_blank = !init_args[:blank].nil? && Helper.random_with_blank('X', init_args[:blank]) == ''
       @state = init_args[:state]
       @country = init_args[:country]

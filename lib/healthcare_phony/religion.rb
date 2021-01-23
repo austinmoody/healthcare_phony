@@ -11,7 +11,7 @@ module HealthcarePhony
     # religion_data_file - YAML file containing religion information to randomly choose from if different options than
     # those that come with gem are desired.  See {religion.yml}[https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/religion.yml]
     # for default values.
-    def initialize(**init_args)
+    def initialize(init_args = {})
       # TODO: allow a way for caller to pass in a custom set of codes to choose from
       # TODO: allow a way for caller to pass in % blank
 

@@ -11,7 +11,7 @@ module HealthcarePhony
     # Public: Initialize a Doctor.  Pass in hash of different parameters, currently this includes:
     #
     # identifier - Allows you to specify an identifier for this Doctor instead of having it randomly generated.
-    def initialize(**init_args)
+    def initialize(init_args = {})
       @identifier = if !init_args[:identifier].nil?
                       init_args[:identifier]
                     else

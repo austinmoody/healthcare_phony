@@ -10,7 +10,7 @@ module HealthcarePhony
     # Public: Initializes an Address. Pass in hash of different parameters, currently this includes:
     # language_data_file - Location of YAML file containing Language data (Code, Description, and Coding System) if a
     # different set of random values is desired.  Otherwise the default file {language.yml}[https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/language.yml] will be used.
-    def initialize(**init_args)
+    def initialize(init_args = {})
       # TODO: allow a way for caller to pass in a custom set of codes to choose from.
       # TODO: allow a way for caller to pass in % blank
 

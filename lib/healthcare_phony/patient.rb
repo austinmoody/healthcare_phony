@@ -25,7 +25,7 @@ module HealthcarePhony
                   :death_indicator,
                   :death_datetime
 
-    def initialize(**init_args)
+    def initialize(init_args = {})
       define_gender(init_args)
       define_names(init_args)
       define_addresses(init_args)
@@ -40,7 +40,7 @@ module HealthcarePhony
 
     private
 
-    def define_gender(**init_args)
+    def define_gender(init_args = {})
       @gender = if !init_args[:gender].nil? && init_args[:gender].is_a?(HealthcarePhony::Gender)
                   init_args[:gender]
                 else
@@ -48,7 +48,7 @@ module HealthcarePhony
                 end
     end
 
-    def define_names(**init_args)
+    def define_names(init_args = {})
       init_args[:gender] = @gender
       names_count = init_args[:names_count].nil? || init_args[:names_count] < 1 ? 1 : init_args[:names_count]
       @names = []
@@ -58,7 +58,7 @@ module HealthcarePhony
       end
     end
 
-    def define_addresses(**init_args)
+    def define_addresses(init_args = {})
       address_count = init_args[:address_count].nil? || init_args[:address_count] < 1 ? 1 : init_args[:address_count]
       @addresses = []
       while address_count.positive?
@@ -67,19 +67,19 @@ module HealthcarePhony
       end
     end
 
-    def define_phones(**init_args)
+    def define_phones(init_args = {})
       @home_phone = HomePhoneNumber.new(init_args)
       @cell_phone = CellPhoneNumber.new(init_args)
       @work_phone = WorkPhoneNumber.new(init_args)
     end
 
-    def define_dob(**init_args)
+    def define_dob(init_args = {})
       min_age = init_args[:min_age].nil? ? 1 : init_args[:min_age]
       max_age = init_args[:max_age].nil? ? 99 : init_args[:max_age]
       @date_of_birth = Faker::Date.birthday(min_age: min_age, max_age: max_age)
     end
 
-    def define_race(**init_args)
+    def define_race(init_args = {})
       races_count = init_args[:race_count].nil? || init_args[:race_count] < 1 ? 1 : init_args[:race_count]
       @races = []
       while races_count.positive?
