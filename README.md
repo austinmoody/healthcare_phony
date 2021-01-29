@@ -309,6 +309,34 @@ The creation of the Hl7Message object can be customized by sending the following
 * message_receiving_application - Array of Receiving Applications (MSH.5) to randomly choose from.  Specified as comma separated String or Ruby Array.
 * message_receiving_facility - Array of Receiving Facilities (MSH.6) to randomly choose from.  Specified as comma separated String or Ruby Array.
 
+## Examples
+
+See the examples directory.
+
+So far there is only one script there, phony_adt_sender.rb.  This script will generate a specified number of fake ADT messages and send them to the specified host and port using TCP/IP mllp.
+
+Command line argument description:
+
+```text
+Usage: phony_adt_sender.rb [options]
+
+    -n, --number NUMBER              Number of messages to send
+    -h, --host HOST                  IP or DNS for listening host
+    -p, --port PORT                  Listening port
+    -c, --config CONFIGFILE          Path to configuration file (YAML) for message parameters
+        --mllp-start HEX             Hex character(s) to denote start of message bytes. In form nn (example 0b for vertical tab) or nnnn (example 1c0d for file separator & carriage return)
+        --mllp-end HEX               Hex character(s) to denote start of message bytes. In form nn (example 0b for vertical tab) or nnnn (example 1c0d for file separator & carriage return)
+        --help                       Show this message
+```
+
+An example config file is also in the examples directory.
+
+So to send 100 messages to 192.168.1.50:3022 using a config file phony_adt_sender.yml with non-standard mllp beginning/ending.
+
+```text
+ruby phony_adt_sender.rb -h 192.168.1.50 --number 100 --port 3022 --config phony_adt_sender.yml --mllp-start 05 --mllp-end 0304
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/austinmoody/healthcare_phony. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/healthcare_phony/blob/master/CODE_OF_CONDUCT.md).
