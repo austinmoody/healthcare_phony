@@ -19,7 +19,7 @@ module HealthcarePhony
       set_template
       @hl7_message = Hl7Message.new(@adt_arguments)
       @patient = Patient.new(@adt_arguments)
-      @visit = PatientVisit.new(@adt_arguments)
+      @visit = PatientVisit.new(@adt_arguments.merge({ visit_type: set_visit_type }))
     end
 
     def to_s
@@ -39,6 +39,19 @@ module HealthcarePhony
                   else
                     File.read(@adt_arguments[:template_file])
                   end
+    end
+
+    def set_visit_type
+      case @hl7_message.trigger_event
+      when 'A01'
+        HealthcarePhony::VisitType::ADMIT
+      when 'A03'
+        HealthcarePhony::VisitType::DISCHARGE
+      when 'A04'
+        HealthcarePhony::VisitType::REGISTRATION
+      else
+        HealthcarePhony::VisitType::OTHER
+      end
     end
   end
 

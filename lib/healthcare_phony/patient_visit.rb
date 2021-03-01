@@ -23,8 +23,9 @@ module HealthcarePhony
     # or Ruby array. Otherwise this field is left blank.
     # vip_indicator - Array of Patient Type codes (PV1.18) to randomly choose from. Specified as comma separated String
     # or Ruby array. Otherwise this field is left blank.
+    # visit_type - VisitType of the patient's visit
     def initialize(init_args = {})
-      @doctors = VisitDoctors.new
+      @doctors = VisitDoctors.new(init_args)
       @location = VisitLocation.new(init_args)
       @admission = VisitAdmission.new(init_args)
       @bed_status = define_bed_status(init_args)

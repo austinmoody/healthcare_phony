@@ -19,8 +19,8 @@ module HealthcarePhony
       @set_blank = !init_args[:blank].nil? && Helper.random_with_blank('X', init_args[:blank]) == ''
       @gender = init_args[:gender]
       @degree_data_file = get_degree_data_file(init_args)
-      @given_name = define_given_name
-      @family_name = define_family_name
+      @given_name = (init_args[:given_name_append].nil? ? '' : init_args[:given_name_append]) + define_given_name
+      @family_name = (init_args[:family_name_append].nil? ? '' : init_args[:family_name_append]) + define_family_name
       @middle_name = define_middle_name
       @suffix = define_suffix
       @prefix = define_prefix

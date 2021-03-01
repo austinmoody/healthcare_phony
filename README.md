@@ -147,6 +147,7 @@ The creation of the Patient can be customized by sending the following parameter
 * race_count &rarr; By default on Race is generated, this allows you to specify a number > 1.
 * gender &rarr; A Gender object which will be used to generate a Male or Female name if specified.
 * degree_data_file &rarr; Location of YAML file containing a list of potential degrees to choose from. By default the gem supplied file will be used.  The default file [degree.yml](https://github.com/austinmoody/healthcare_phony/blob/main/lib/healthcare_phony/data_files/degree.yml).
+* visit_type &rarr; VisitType of this patient's visit
 
 ### Patient Visit
 

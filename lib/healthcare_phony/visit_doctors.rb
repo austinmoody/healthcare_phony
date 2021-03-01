@@ -9,11 +9,11 @@ module HealthcarePhony
                   :consulting,
                   :admitting
 
-    def initialize
-      @attending = Doctor.new
-      @referring = Doctor.new
-      @consulting = Doctor.new
-      @admitting = Doctor.new
+    def initialize(init_args = {})
+      @attending = Doctor.new(init_args)
+      @referring = Doctor.new(init_args)
+      @consulting = Doctor.new(init_args)
+      @admitting = Doctor.new(init_args)
     end
   end
 end

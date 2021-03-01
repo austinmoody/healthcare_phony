@@ -22,7 +22,7 @@ class VisitDischargeTest < Minitest::Test
   end
 
   def test_default_a03
-    vd = HealthcarePhony::VisitDischarge.new(event_type: 'A03')
+    vd = HealthcarePhony::VisitDischarge.new(visit_type: HealthcarePhony::VisitType::DISCHARGE)
     assert_includes(@dispositions, vd.disposition)
     assert_match(/[a-zA-Z. ]/, vd.location)
     assert(vd.datetime < Time.now)
@@ -30,31 +30,31 @@ class VisitDischargeTest < Minitest::Test
 
   def test_disposition_set_string
     discharge_disposition = 'ABC,123,ZZZ'
-    vd = HealthcarePhony::VisitDischarge.new(event_type: 'A03', discharge_disposition: discharge_disposition)
+    vd = HealthcarePhony::VisitDischarge.new(visit_type: HealthcarePhony::VisitType::DISCHARGE, discharge_disposition: discharge_disposition)
     assert_includes(discharge_disposition.split(','), vd.disposition)
   end
 
   def test_disposition_set_array
     discharge_disposition = %w[ABC 123 ZZZ]
-    vd = HealthcarePhony::VisitDischarge.new(event_type: 'A03', discharge_disposition: discharge_disposition)
+    vd = HealthcarePhony::VisitDischarge.new(visit_type: HealthcarePhony::VisitType::DISCHARGE, discharge_disposition: discharge_disposition)
     assert_includes(discharge_disposition, vd.disposition)
   end
 
   def test_location_set_string
     locations = 'Hospital A, Clinic Z'
-    vd = HealthcarePhony::VisitDischarge.new(event_type: 'A03', discharge_location: locations)
+    vd = HealthcarePhony::VisitDischarge.new(visit_type: HealthcarePhony::VisitType::DISCHARGE, discharge_location: locations)
     assert_includes(locations.split(','), vd.location)
   end
 
   def test_location_set_array
     locations = ['Hospital A', 'Clinic Z']
-    vd = HealthcarePhony::VisitDischarge.new(event_type: 'A03', discharge_location: locations)
+    vd = HealthcarePhony::VisitDischarge.new(visit_type: HealthcarePhony::VisitType::DISCHARGE, discharge_location: locations)
     assert_includes(locations, vd.location)
   end
 
   def test_set_datetime
     admit_datetime = Time.now - 9 * 24 * 60 * 60
-    vd = HealthcarePhony::VisitDischarge.new(event_type: 'A03', admit_datetime: admit_datetime)
+    vd = HealthcarePhony::VisitDischarge.new(visit_type: HealthcarePhony::VisitType::DISCHARGE, admit_datetime: admit_datetime)
     assert(vd.datetime > admit_datetime)
   end
 end

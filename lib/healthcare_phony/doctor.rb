@@ -19,7 +19,8 @@ module HealthcarePhony
                       (pre_check_npi.to_s + Helper.get_npi_check_digit(pre_check_npi).to_s).to_i
                     end
 
-      @name = PersonName.new(degree: 'MD,DO')
+      init_args[:degree] = 'MD,DO'
+      @name = PersonName.new(init_args)
     end
   end
 end
