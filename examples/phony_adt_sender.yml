@@ -1,10 +1,12 @@
 ---
-:message_sending_facility: CLINIC1,CLINIC2,CLINIC3
+:message_sending_facility: HOSP1,HOSP2,HOSP3
 :message_sending_application: RUBY
 :message_receiving_application: MIRTH
-:message_receiving_facility: HOSPITAL_ONE
-:message_version: '2.3'
-:patient_class: A,B,C,X
-:adt_events: A99,A88
-:message_control_id_pattern: HL7_\d{15}
-:message_processing_id: X
+:message_receiving_facility: NCSAS
+:message_version: '2.5.1'
+:patient_class: I,O,E
+:adt_events: A01,A03,A04,A08
+:message_control_id_pattern: HEALTHCARE_PHONY_\d{15}
+:message_processing_id: P
+:given_name_append: ZZFAKE
+:family_name_append: ZZPHONY

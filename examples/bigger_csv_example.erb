@@ -1,0 +1,4 @@
+<% if write_header %>
+Patient_Identifier,First_Name,Middle_Name,Last_Name,Address_1,City,State,Zip,Home_Phone,Work_Phone,Cell_Phone,DOB,Gender,SSN
+<% end %>
+"<%= patient.medical_record_number.identifier %>","<%= patient.names[0].given_name %>","<%= patient.names[0].middle_name %>","<%= patient.names[0].family_name %>","<%= patient.addresses[0].address_line1 %>","<%= patient.addresses[0].city %>","<%= patient.addresses[0].state %>","<%= patient.addresses[0].postal_code %>","(<%= patient.home_phone.area_code %>)<%= patient.home_phone.exchange_code %>-<%= patient.home_phone.subscriber_number %>","(<%= patient.work_phone.area_code %>)<%= patient.work_phone.exchange_code %>-<%= patient.work_phone.subscriber_number %>","(<%= patient.cell_phone.area_code %>)<%= patient.cell_phone.exchange_code %>-<%= patient.cell_phone.subscriber_number %>","<%= patient.date_of_birth.to_s %>","<%= patient.gender.code %>","<%= patient.ssn %>"

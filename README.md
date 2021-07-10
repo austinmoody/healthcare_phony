@@ -314,7 +314,7 @@ The creation of the Hl7Message object can be customized by sending the following
 
 See the examples directory.
 
-So far there is only one script there, phony_adt_sender.rb.  This script will generate a specified number of fake ADT messages and send them to the specified host and port using TCP/IP mllp.
+So far there phony_adt_sender.rb.  This script will generate a specified number of fake ADT messages and send them to the specified host and port using TCP/IP mllp.
 
 Command line argument description:
 
@@ -338,6 +338,20 @@ So to send 100 messages to 192.168.1.50:3022 using a config file phony_adt_sende
 ruby phony_adt_sender.rb -h 192.168.1.50 --number 100 --port 3022 --config phony_adt_sender.yml --mllp-start 05 --mllp-end 0304
 ```
 
+Also in the examples directory are two files that can be used to generate a CSV.
+
+* phony_csv.yml &rarr; a configuration file that can be used to set parametesr for generation patients.  Then two items specific to creating the CSV
+  * number_of_rows &rarr; The # of rows to write
+  * template_file &rarr; Path to a ERB template for the CSV.  If not specified the default in the library is used.
+* bigger_csv_example.erb &rarr; Just another CSV template example.
+
+Using these files in IRB (or in a script) you could do:
+
+```ruby
+csv_parameters = Psych.load_file('./examples/phony_csv.yml')
+csv = HealthcarePhony::CsvFile.new(csv_parameters)
+csv.to_file("d:/temp/testnewtemplate.csv")
+```
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/austinmoody/healthcare_phony. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/healthcare_phony/blob/master/CODE_OF_CONDUCT.md).

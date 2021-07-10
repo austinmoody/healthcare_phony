@@ -1,0 +1,5 @@
+---
+:given_name_append: ZZFAKE
+:family_name_append: ZZPHONY
+:number_of_rows: 1000
+:template_file: "D:/Users/amoody/RubymineProjects/healthcare_phony/examples/bigger_csv_example.erb"
